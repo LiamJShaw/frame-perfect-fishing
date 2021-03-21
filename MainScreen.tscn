@@ -1,0 +1,96 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Scenes/PowerBar.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Pond.tscn" type="PackedScene" id=2]
+[ext_resource path="res://HUD.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scripts/BaseGame.gd" type="Script" id=4]
+[ext_resource path="res://Scenes/Rod.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scripts/CameraShake.gd" type="Script" id=6]
+[ext_resource path="res://font.tres" type="DynamicFont" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 5, 14 )
+
+[node name="BaseGame" type="Area2D"]
+script = ExtResource( 4 )
+
+[node name="ShakeCamera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+current = true
+script = ExtResource( 6 )
+target = NodePath("../../BaseGame")
+
+[node name="Background" type="ColorRect" parent="."]
+margin_left = -31.0
+margin_top = -13.0
+margin_right = 250.0
+margin_bottom = 400.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HUD" parent="." instance=ExtResource( 3 )]
+anchor_left = 0.0
+anchor_right = 0.0
+margin_left = 132.0
+margin_top = 25.0
+margin_right = 132.0
+margin_bottom = 25.0
+
+[node name="Pond" parent="." instance=ExtResource( 2 )]
+position = Vector2( 12, 81 )
+
+[node name="Rod" parent="." instance=ExtResource( 5 )]
+position = Vector2( 90, 278 )
+
+[node name="Timer" type="Timer" parent="Rod"]
+wait_time = 0.5
+one_shot = true
+
+[node name="PowerBar" parent="." instance=ExtResource( 1 )]
+position = Vector2( 12, 339 )
+
+[node name="LeftRodHider" type="ColorRect" parent="."]
+margin_left = -21.0
+margin_top = -1.0
+margin_right = 12.0
+margin_bottom = 385.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RightRodHider" type="ColorRect" parent="."]
+margin_left = 204.0
+margin_top = -2.0
+margin_right = 247.0
+margin_bottom = 384.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PondSides" type="Area2D" parent="."]
+
+[node name="Left" type="CollisionShape2D" parent="PondSides"]
+position = Vector2( 9, 293 )
+shape = SubResource( 1 )
+
+[node name="Right" type="CollisionShape2D" parent="PondSides"]
+position = Vector2( 207, 292 )
+shape = SubResource( 1 )
+
+[node name="Label" type="Label" parent="."]
+visible = false
+margin_left = 54.0
+margin_top = 318.0
+margin_right = 167.0
+margin_bottom = 334.0
+custom_fonts/font = ExtResource( 7 )
+text = "PERFECT!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="timeout" from="Rod/Timer" to="." method="turn_over"]
+[connection signal="area_entered" from="PondSides" to="." method="_on_PondSides_area_entered"]

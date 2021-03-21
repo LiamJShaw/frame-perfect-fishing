@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/PowerBar/indicator.png" type="Texture" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 3, 6 )
+
+[node name="Indicator" type="Area2D"]
+collision_mask = 6
+
+[node name="IndicatorSprite" type="Sprite" parent="."]
+position = Vector2( 176, 4 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="IndicatorCollision" type="CollisionShape2D" parent="."]
+position = Vector2( 179, 10 )
+shape = SubResource( 1 )
+
+[node name="IndicatorPosition" type="Position2D" parent="."]
+position = Vector2( 179, 10 )
