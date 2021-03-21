@@ -6,7 +6,8 @@
 [ext_resource path="res://HUD.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/BaseGame.gd" type="Script" id=5]
 [ext_resource path="res://Scripts/CameraShake.gd" type="Script" id=7]
-[ext_resource path="res://font.tres" type="DynamicFont" id=10]
+[ext_resource path="res://Assets/Fonts/font.tres" type="DynamicFont" id=10]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5, 14 )

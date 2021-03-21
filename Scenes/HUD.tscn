@@ -1,8 +1,9 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Assets/HUD.png" type="Texture" id=1]
-[ext_resource path="res://font.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Assets/Fonts/font.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Scripts/HUD.gd" type="Script" id=3]
+
 
 [node name="HUD" type="Control"]
 anchor_left = 0.5
